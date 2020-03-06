@@ -1,4 +1,13 @@
-# tangata-manu-stack-docker
+# Tangata-manu Stack with Docker
+
+## Run development enviroment
+
+Vagrant and Virtualbox should have installed (MacOS)
+
+```
+brew cask install virtualbox
+brew cask install vagrant
+```
 
 Clone this repository
 
@@ -15,22 +24,7 @@ cd ./tangata-manu
 git submodule update --init --recursive
 ```
 
-## Run development enviroment
-
-Vagrant and Virtualbox should have installed (MacOS)
-
-```
-brew cask install virtualbox
-brew cask install vagrant
-```
-
-Change project directory
-
-```
-cd ./tangata-manu-stack-docker
-```
-
-Start vargant
+Start vargant 
 
 ```
 vagrant up
@@ -42,14 +36,14 @@ Give you access to a shell
 vagrant ssh
 ```
 
-Start tangata-manu stack
+Start docker-compose
 
 ```
 vagrant:$ cd /opt/project
 vagrant:$ sudo docker-compose up -d
 ```
 
-Restart containers if needed
+Restart docker-compose if needed
 
 ```
 vagrant:$ sudo docker-compose stop
@@ -61,7 +55,7 @@ vagrant:$ sudo docker-compose up -d
 **Show running process**
 
 ```
-sudo docker ps
+vagrant:$ sudo docker ps
 
 ```
 output
@@ -77,12 +71,12 @@ f06d7c52d5d9        tangata-manu-image:latest     "yarn run prod"          About
 
 cardano-http-bridge
 ```
-sudo docker logs -f project_cardano-http-bridge_1
+vagrant:$ sudo docker logs -f project_cardano-http-bridge_1
 ```
 
 tangata-manu
 ```
-sudo docker logs -f project_tangata-manu_1
+vagrant:$ sudo docker logs -f project_tangata-manu_1
 ```
 
 **Connect to container**
