@@ -6,7 +6,10 @@ Clone this repository
 git clone https://github.com/Atomicwallet/tangata-manu-stack-docker.git
 ```
 
+Clone tangata-manu project
+
 ```
+cd ./tangata-manu-stack-docker
 git clone --single-branch --branch master-shelley https://github.com/Emurgo/tangata-manu
 cd ./tangata-manu
 git submodule update --init --recursive
@@ -24,7 +27,7 @@ brew cask install vagrant
 Change project directory
 
 ```
-cd ./tangata-manu
+cd ./tangata-manu-stack-docker
 ```
 
 Start vargant

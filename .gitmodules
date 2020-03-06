@@ -1,6 +1,0 @@
-[submodule "tangata-manu"]
-	path = tangata-manu
-	url = https://github.com/Emurgo/tangata-manu
-	active = true
-	branch = master-shelley
-
