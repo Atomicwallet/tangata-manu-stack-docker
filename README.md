@@ -79,13 +79,6 @@ tangata-manu
 vagrant:$ sudo docker logs -f project_tangata-manu_1
 ```
 
-**Connect to container**
-
-tangata-manu
-```
-vagrant:$ sudo docker exec -it  project_tangata-manu_1 /bin/bash
-```
-
 **Connect to darabase**
 
 Postgresql
