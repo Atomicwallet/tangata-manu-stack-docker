@@ -1,6 +1,11 @@
 # tangata-manu-stack-docker
 
-Clone repository
+Clone this repository
+
+```
+git clone https://github.com/Atomicwallet/tangata-manu-stack-docker.git
+```
+
 ```
 git clone --single-branch --branch master-shelley https://github.com/Emurgo/tangata-manu
 cd ./tangata-manu
@@ -26,7 +31,12 @@ Start vargant
 
 ```
 vagrant up
-vargant ssh
+```
+
+Give you access to a shell
+
+```
+vagrant ssh
 ```
 
 Start tangata-manu stack
