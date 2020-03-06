@@ -1,0 +1,63 @@
+version: '3.7'
+
+services:
+
+  cardano-http-bridge:
+    build:
+      context: .
+      dockerfile: ./docker/cardano-http-bridge/Dockerfile
+    network_mode: host
+    restart: always
+    ports: 
+        - "8082:8082"
+    volumes:
+        - "/opt/docker_mounts/cardano-http-bridge/data:/opt/data"
+    command: /opt/app/cardano-http-bridge start --networks-dir /opt/data --port 8082
+
+  postgres:
+    image: postgres:12.1
+    network_mode: host
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - "/opt/docker_mounts/postgres/data:/var/lib/postgresql/data"
+    environment:
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_DB: yoroi_blockchain_importer
+  
+  tangata-manu-image:
+    image: tangata-manu-image:latest
+    build:
+      context: .
+      dockerfile: ./docker/tangata-manu/Dockerfile
+    network_mode: host
+    command: ["/bin/sh", "-c", "exit 0"]
+
+  tangata-manu-migrate:
+    image: tangata-manu-image:latest
+    network_mode: host
+    environment:
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: yoroi_blockchain_importer
+      PGHOST: "127.0.0.1"
+      PGPORT: "5432"
+      TANGATA_BRIDGE_URL: http://127.0.0.1:8082
+    command: yarn run migrate up
+
+  tangata-manu:
+    image: tangata-manu-image:latest
+    network_mode: host
+    restart: always
+    ports: 
+      - "8080:8080"
+    environment:
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: yoroi_blockchain_importer
+      PGHOST: "127.0.0.1"
+      PGPORT: "5432"
+      TANGATA_BRIDGE_URL: http://127.0.0.1:8082
+    command: yarn run prod
