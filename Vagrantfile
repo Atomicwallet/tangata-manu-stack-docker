@@ -4,7 +4,7 @@ Vagrant.configure(2) do |config|
     #config.vm.network :forwarded_port, guest: 3306, host: 3306
     config.vm.provider "virtualbox" do |vb|
         vb.memory = 1000
-        vb.cpus = 1
+        vb.cpus = 2
     end
     config.vm.synced_folder "./", "/opt/project"
     config.vm.provision "shell", inline: <<-SHELL
