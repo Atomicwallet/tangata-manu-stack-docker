@@ -60,4 +60,5 @@ services:
       PGHOST: "127.0.0.1"
       PGPORT: "5432"
       TANGATA_BRIDGE_URL: http://127.0.0.1:8082
+      TANGATA_DEFAULT_NETWORK: mainnet
     command: yarn run prod
